@@ -362,7 +362,7 @@
 /* Small mobile devices */
 @media (max-width: 375px) {
   .greeting-section {
-    padding: 40px 16px 16px 16px;
+    padding: 70px 16px 16px 16px;
   }
 
   .greeting,

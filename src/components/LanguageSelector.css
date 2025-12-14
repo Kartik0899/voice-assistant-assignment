@@ -217,6 +217,9 @@
 
 /* Small mobile */
 @media (max-width: 375px) {
+  .language-modal-content {
+    max-height: 8rem;
+  }
   .language-button {
     left: 16px;
     width: 44px;
