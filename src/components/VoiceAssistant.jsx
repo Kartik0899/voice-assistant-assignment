@@ -36,10 +36,10 @@ import LoadingFallback from "./LoadingFallback";
 import "./VoiceAssistant.css";
 
 // Lazy load components for code splitting
-const VoiceSelector = lazy(() => import("./VoiceSelector"));
 const OnboardingScreen = lazy(() => import("./OnboardingScreen"));
 const ChatInterface = lazy(() => import("./ChatInterface"));
 const ErrorMessage = lazy(() => import("./ErrorMessage"));
+const LanguageSelector = lazy(() => import("./LanguageSelector"));
 
 const VoiceAssistant = () => {
   const dispatch = useDispatch();
@@ -363,6 +363,9 @@ const VoiceAssistant = () => {
 
       {/* Voice Input Button */}
       <div className="voice-input-section">
+        <Suspense fallback={null}>
+          <LanguageSelector />
+        </Suspense>
         <button
           className={`voice-button ${isListening ? "listening" : ""} ${
             isProcessing ? "processing" : ""
@@ -431,12 +434,6 @@ const VoiceAssistant = () => {
         </button>
       </div>
 
-      {/* Settings Button (Voice Selector) */}
-      <div className="settings-button">
-        <Suspense fallback={null}>
-          <VoiceSelector />
-        </Suspense>
-      </div>
     </div>
   );
 };

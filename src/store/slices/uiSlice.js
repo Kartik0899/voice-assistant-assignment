@@ -5,9 +5,11 @@ const getInitialState = () => {
   if (typeof window !== "undefined") {
     const savedOnboarding = localStorage.getItem("onboardingComplete");
     const savedUserName = localStorage.getItem("userName");
+    const savedLanguage = localStorage.getItem("selectedLanguage");
     return {
       connectionStatus: "disconnected",
       selectedVoice: null,
+      selectedLanguage: savedLanguage || "en-US",
       userName: savedUserName || null,
       isOnboardingComplete: savedOnboarding === "true" || false,
     };
@@ -15,6 +17,7 @@ const getInitialState = () => {
   return {
     connectionStatus: "disconnected",
     selectedVoice: null,
+    selectedLanguage: "en-US",
     userName: null,
     isOnboardingComplete: false,
   };
@@ -38,8 +41,14 @@ const uiSlice = createSlice({
     setOnboardingComplete: (state, action) => {
       state.isOnboardingComplete = action.payload;
     },
+    setSelectedLanguage: (state, action) => {
+      state.selectedLanguage = action.payload;
+      if (typeof window !== "undefined") {
+        localStorage.setItem("selectedLanguage", action.payload);
+      }
+    },
   },
 });
 
-export const { setConnectionStatus, setSelectedVoice, setUserName, setOnboardingComplete } = uiSlice.actions;
+export const { setConnectionStatus, setSelectedVoice, setUserName, setOnboardingComplete, setSelectedLanguage } = uiSlice.actions;
 export default uiSlice.reducer;

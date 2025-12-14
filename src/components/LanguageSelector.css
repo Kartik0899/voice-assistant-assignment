@@ -1,0 +1,252 @@
+.language-button {
+  position: absolute;
+  left: 20px;
+  width: 48px;
+  height: 48px;
+  bottom: 0;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  color: #1f2937;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: all 0.2s ease;
+  z-index: 2;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.language-button:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.language-button:active {
+  transform: scale(0.95);
+}
+
+.language-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background: rgba(0, 0, 0, 0.5); */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.language-modal {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  width: 100%;
+  max-width: 400px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.language-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.language-modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.language-modal-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.language-modal-close:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #1f2937;
+}
+
+.language-modal-close:active {
+  transform: scale(0.95);
+}
+
+.language-modal-content {
+  padding: 8px;
+  overflow-y: auto;
+  /* max-height: calc(80vh - 80px); */
+  max-height: 10rem;
+}
+
+.language-modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.language-modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.language-modal-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.language-modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-size: 15px;
+  color: #1f2937;
+  transition: all 0.2s ease;
+  border-radius: 12px;
+  margin-bottom: 4px;
+}
+
+.language-option:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.language-option.selected {
+  background: rgba(255, 107, 53, 0.1);
+  color: #ff6b35;
+  font-weight: 500;
+}
+
+.language-option:active {
+  transform: scale(0.98);
+}
+
+.language-flag {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.language-name {
+  flex: 1;
+}
+
+.language-option svg {
+  flex-shrink: 0;
+  color: #ff6b35;
+}
+
+/* Desktop/Tablet */
+@media (min-width: 768px) {
+  .language-button {
+    left: 24px;
+    width: 56px;
+    height: 56px;
+  }
+
+  .language-button svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .language-modal {
+    max-width: 450px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 375px) {
+  .language-button {
+    left: 16px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .language-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .language-modal {
+    max-width: 100%;
+    border-radius: 16px;
+  }
+
+  .language-modal-header {
+    padding: 16px 20px;
+  }
+
+  .language-modal-header h3 {
+    font-size: 16px;
+  }
+
+  .language-option {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .language-flag {
+    font-size: 20px;
+  }
+}
