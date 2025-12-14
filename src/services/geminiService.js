@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { formatErrorMessage } from "../utils/errorUtils";
 
 let apiKey = null;
 let genAI = null;
@@ -98,8 +99,9 @@ async function sendTextMessage(text) {
 
     return fullResponse;
   } catch (error) {
-    if (onError) onError(error.message);
-    throw error;
+    const errorMessage = formatErrorMessage(error);
+    if (onError) onError(errorMessage);
+    throw new Error(errorMessage);
   }
 }
 

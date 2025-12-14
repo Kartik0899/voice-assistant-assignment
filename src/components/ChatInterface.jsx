@@ -6,8 +6,15 @@ import "./ChatInterface.css";
 // messages: array of messages
 // onSendMessage: function to send a message
 // isLoading: boolean to indicate if the chat is loading
+// isInputVisible: boolean to control input field visibility
+// onToggleInput: function to toggle input field visibility
 // returns the chat interface
-const ChatInterface = ({ messages, onSendMessage, isLoading }) => {
+const ChatInterface = ({
+  messages,
+  onSendMessage,
+  isLoading,
+  isInputVisible = false,
+}) => {
   const [inputText, setInputText] = useState("");
   const messagesEndRef = useRef(null);
 
@@ -35,8 +42,8 @@ const ChatInterface = ({ messages, onSendMessage, isLoading }) => {
         {messages.length === 0 ? (
           <div className="empty-chat">
             <p>
-              Start a conversation by typing a message or clicking the
-              microphone button.
+              Start a conversation by typing a message or using the voice
+              button.
             </p>
           </div>
         ) : (
@@ -75,32 +82,34 @@ const ChatInterface = ({ messages, onSendMessage, isLoading }) => {
         <div ref={messagesEndRef} />
       </div>
 
-      <form className="chat-input-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          className="chat-input"
-          placeholder="Type your message here..."
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-          disabled={isLoading}
-        />
-        <button
-          type="submit"
-          className="send-button"
-          disabled={!inputText.trim() || isLoading}
-          aria-label="Send message"
-        >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+      {isInputVisible && (
+        <form className="chat-input-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            className="chat-input"
+            placeholder="Ask me anything"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            disabled={isLoading}
+          />
+          <button
+            type="submit"
+            className="send-button"
+            disabled={!inputText.trim() || isLoading}
+            aria-label="Send message"
           >
-            <path d="M2 21L23 12L2 3V10L17 12L2 14V21Z" fill="currentColor" />
-          </svg>
-        </button>
-      </form>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M2 21L23 12L2 3V10L17 12L2 14V21Z" fill="currentColor" />
+            </svg>
+          </button>
+        </form>
+      )}
     </div>
   );
 };

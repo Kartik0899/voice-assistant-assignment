@@ -1,6 +1,17 @@
+import { useEffect } from 'react';
 import './ErrorMessage.css';
 
 const ErrorMessage = ({ message, onDismiss }) => {
+  useEffect(() => {
+    if (message && onDismiss) {
+      const timer = setTimeout(() => {
+        onDismiss();
+      }, 4000); // Auto-dismiss after 4 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [message, onDismiss]);
+
   if (!message) return null;
 
   return (

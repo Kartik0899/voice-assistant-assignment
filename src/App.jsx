@@ -1,12 +1,18 @@
+import { Suspense, lazy } from 'react';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-import VoiceAssistant from './components/VoiceAssistant';
+import LoadingFallback from './components/LoadingFallback';
 import './App.css';
+
+// Lazy load main components for code splitting
+const VoiceAssistant = lazy(() => import('./components/VoiceAssistant'));
 
 function App() {
   return (
     <Provider store={store}>
-      <VoiceAssistant />
+      <Suspense fallback={<LoadingFallback />}>
+        <VoiceAssistant />
+      </Suspense>
     </Provider>
   );
 }
